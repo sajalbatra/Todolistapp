@@ -1,7 +1,7 @@
 // Import necessary modules and configure environment variables
-import express from 'express';
+//import express from 'express';
 import database from "./src/db/db.js"
-const app = express();
+import {app} from "./app.js";
 const port = process.env.PORT || 3000;
 
 async function startServer() {
