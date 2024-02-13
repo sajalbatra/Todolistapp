@@ -1,4 +1,4 @@
-import Task from '../models/Task.js';
+import { Task } from "../models/Task.model.js";
 
 // Controller function to create a new task
 const createTask = async (req, res) => {
@@ -10,7 +10,7 @@ const createTask = async (req, res) => {
             description,
             category,
             dueDate,
-            user: req.user._id // Assuming you have user authentication and you can access the user ID from the request
+            user: req.user._id  // Assuming you have user authentication and you can access the user ID from the request
         });
 
         const savedTask = await newTask.save();
@@ -24,6 +24,7 @@ const createTask = async (req, res) => {
 // Controller function to get all tasks
 const getAllTasks = async (req, res) => {
     try {
+        // Retrieve tasks associated with the authenticated user
         const tasks = await Task.find({ user: req.user._id });
 
         res.status(200).json(tasks);
@@ -31,6 +32,7 @@ const getAllTasks = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 // Controller function to update a task
 const updateTask = async (req, res) => {
